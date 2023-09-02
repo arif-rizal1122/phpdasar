@@ -32,29 +32,17 @@
       $nama = htmlspecialchars($data["nama"]);
       $email = htmlspecialchars($data["email"]);
       $jurusan = htmlspecialchars($data["jurusan"]);
-
-      // $gambarLama = htmlspecialchars($data["gambarLama"]);
-      // cek apakah user pilih gambar lama / tidak
-      // if( $_FILES['gambar']['error'] === 4) {
-      //   $gambar = $gambarLama;
-      // } else {
-      //   $gambar = upload();
-
-      // }
-
+      $user_id = $_SESSION["user_id"];
 
 
       $gambar = upload();
       if( !$gambar ) {
         return false;
       }
-   
 
-      
-      
-      $query = "INSERT INTO mahasiswa
+      $query = "INSERT INTO mahasiswa_id
                   VALUES
-                ('', '$nrp', '$nama', '$email', '$jurusan', '$gambar')";
+                ('', '$nrp', '$nama', '$email', '$jurusan', '$gambar', '$user_id')";
       mysqli_query($db, $query);
       
       return mysqli_affected_rows($db);
@@ -113,7 +101,7 @@ function upload() {
 function hapus($id) {
   global $db;
 
-  mysqli_query($db, "DELETE FROM mahasiswa WHERE id = $id");
+  mysqli_query($db, "DELETE FROM mahasiswa_id WHERE id = $id");
 
   return mysqli_affected_rows($db);
 }
@@ -129,7 +117,7 @@ function update($data) {
   $jurusan = htmlspecialchars($data["jurusan"]);
   $gambar = htmlspecialchars($data["gambar"]);
   
-  $query = "UPDATE mahasiswa SET 
+  $query = "UPDATE mahasiswa_id SET 
   nrp = '$nrp',
   nama ='$nama',
   email = '$email',
@@ -144,18 +132,18 @@ function update($data) {
 }
 
 
-function cari($keyword) {                     
-  $query = "SELECT * FROM mahasiswa 
-  WHERE 
-  nama LIKE '%$keyword%' OR 
-  nrp LIKE '%$keyword%' OR
-  email LIKE '%$keyword%' OR
-  jurusan LIKE '%$keyword%' 
-  ";
+// function cari($keyword) {                     
+//   $query = "SELECT * FROM mahasiswa_id 
+//   WHERE 
+//   nama LIKE '%$keyword%' OR 
+//   nrp LIKE '%$keyword%' OR
+//   email LIKE '%$keyword%' OR
+//   jurusan LIKE '%$keyword%' 
+//   ";
    
-   // kembalikan hasilnya berdasarkan array assoc
-   return query($query);
-}
+//    // kembalikan hasilnya berdasarkan array assoc
+//    return query($query);
+// }
 
 
 

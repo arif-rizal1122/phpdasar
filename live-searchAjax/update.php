@@ -13,7 +13,7 @@ require 'functions1.php';
 // ambil dari url[superglobal var]
 $id = $_GET["id"];
 
-$mhs = query("SELECT * FROM mahasiswa WHERE id = $id")[0];
+$mhs = query("SELECT * FROM mahasiswa_id WHERE id = $id")[0];
 
 
 // Apakah tombol pernah dipencet atau tidak

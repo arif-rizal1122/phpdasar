@@ -17,7 +17,9 @@ if ( isset($_POST["submit"])) {
 
     // cek apakah data lebih besar dari nol / berarti ada data yg masuk
     // post [data yg dari form diambil terus ditangkap oleh data]
-    if ( tambah($_POST) > 0 ) {
+    if ( tambah($_POST) > 0) {
+
+        
         echo "
         <script>
         alert('data berhasil ditambahkan!');

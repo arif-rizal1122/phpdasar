@@ -8,16 +8,27 @@
  }
 
   require "functions1.php";
+  
+  
+  if ( isset($_SESSION["user_id"])) {
 
- $mahasiswa = query("SELECT * FROM mahasiswa");
+    $_SESSION["user_id"] = $user_id;
+    $mahasiswa = query("SELECT * FROM mahasiswa_id WHERE user_id = $user_id");
 
-  // tombol cari di klik
-  if( isset( $_POST["cari"] )) {
-    $mahasiswa = cari($_POST["keyword"]);
+  } else {
+   
   }
 
-?>
+ 
 
+
+  // tombol cari di klik
+  // if( isset( $_POST["cari"] )) {
+  //   $mahasiswa = cari($_POST["keyword"]);
+
+  // }
+
+?>
 
 
 
@@ -44,12 +55,12 @@
 <br><br>
 
 <!-- ini link searching -->
-<form action="" method="post">
+<!-- <form action="" method="post">
 
   <input type="text" name="keyword" size="40" autofocus placeholder="masukan key woards pencarian.." autocomplete="off" id="keyword">
 
   <button type="submit" name="cari" id="tombol-cari">cari!</button>
-</form>
+</form> -->
 <br>
 
 <br><br>
@@ -73,6 +84,7 @@
   
 
     <?php $u = 1; ?>
+
     <?php foreach( $mahasiswa as $row) : ?>
      <tr>
       <td> <?= $u; ?></td>
